@@ -59,7 +59,6 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Id" Width="100" Binding="{Binding Path=user.Id}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="密码" Width="100" Binding="{Binding Path=user.Password}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="权限" Width="80" Binding="{Binding Path=user.Power}" IsReadOnly="True"/>
                     <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding Path=user.State}" ItemsSource="{Binding Source={StaticResource keyState}}"/>
                     <DataGridTextColumn Header="最近登录" Width="140" Binding="{Binding Path=user.Lastlogin}" IsReadOnly="True"/>

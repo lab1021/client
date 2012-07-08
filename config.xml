@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <id>user04</id>
+  <id>admin12</id>
   <password>123</password>
-  <ip>192.168.0.110</ip>
+  <ip>10.108.16.111</ip>
   <port>9050</port>
-  <power>3</power>
+  <power>1</power>
 </configuration>
