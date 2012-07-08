@@ -200,6 +200,10 @@ namespace client
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            byte[] tmp = new byte[0];
+            client.Send(tmp);
+            client.Dispose();
+            client.Close();
             Environment.Exit(0);
         }
     }
