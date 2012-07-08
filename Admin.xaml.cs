@@ -44,38 +44,6 @@ namespace client
             LUserdata.FindAll(p => { p.Ischeckedcount = LUser.Count(t => t.Ischecked == true); return true; });
         }
 
-
-        ////DataGrid SelectionChanged
-        //private void UserInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (UserInfo.SelectedItems.Count > 1)
-        //    {
-        //        foreach (var item in e.AddedItems)
-        //        {
-        //            if (item is UserData)
-        //            {
-        //                bool isChecked = (item as UserData).user.Ischecked;
-        //                (item as UserData).user.Ischecked = true;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (e.AddedItems.Count ==1)
-        //        {
-        //            if (e.AddedItems[0] is UserData)
-        //            {
-        //                bool isChecked = (e.AddedItems[0] as UserData).user.Ischecked;
-        //                if (isChecked)
-        //                    (e.AddedItems[0] as UserData).user.Ischecked = false;
-        //                else
-        //                    (e.AddedItems[0] as UserData).user.Ischecked = true;
-        //            }
-        //        } 
-        //    }
-        //    LUserdata.FindAll(p => { p.Ischeckedcount = LUser.Count(t => t.Ischecked == true); return true; });
-        //}        
-        //删除选中按钮事件
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
             int recv;
@@ -132,7 +100,18 @@ namespace client
                 string[] user = item.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
                 Power p = (Power)Int32.Parse(user[2]);
                 State s = (State)Int32.Parse(user[3]);
-                
+                string Online = "";
+                switch (user[6])
+                {
+                    case "0":
+                        Online = "离线";
+                        break;
+                    case "1":
+                        Online = "在线";
+                        break;
+                    default:
+                        break;
+                }
                 LUser.Add(new User
                 {
                     Id = user[0],
@@ -141,6 +120,7 @@ namespace client
                     State = s,
                     Lastlogin = user[4],
                     Tcount = Int32.Parse(user[5]),
+                    Isonline = Online,
                     Ischecked = false
                 });
             }
@@ -243,7 +223,7 @@ namespace client
             }
         }
     }
-    public class User : PropertyChangedBase
+    public class User: PropertyChangedBase
     {
         private string _id;
         private string _password;
@@ -252,6 +232,7 @@ namespace client
         private string _lastlogin;
         private bool _ischecked;
         private int _tcount;
+        private string _Isonline;
 
         public string Id
         {
@@ -287,6 +268,11 @@ namespace client
         {
             get { return _tcount; }
             set { _tcount = value; Notify("Tcount"); }
+        }
+        public string Isonline
+        {
+            get { return _Isonline; }
+            set { _Isonline = value; Notify("Isonline"); }
         }
     }
     public class UserData : PropertyChangedBase

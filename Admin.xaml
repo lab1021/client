@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:assembly="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:client"
-        Title="语料采集系统客户端" Height="596" Width="653" Closing="Window_Closing">
+        Title="语料采集系统客户端" Height="596" Width="740" Closing="Window_Closing">
     <Window.Resources>
         <ObjectDataProvider x:Key="keyState" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -62,8 +62,9 @@
                     <DataGridTextColumn Header="密码" Width="100" Binding="{Binding Path=user.Password}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="权限" Width="80" Binding="{Binding Path=user.Power}" IsReadOnly="True"/>
                     <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding Path=user.State}" ItemsSource="{Binding Source={StaticResource keyState}}"/>
-                    <DataGridTextColumn Header="最后登录" Width="140" Binding="{Binding Path=user.Lastlogin}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="最近登录" Width="140" Binding="{Binding Path=user.Lastlogin}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="翻译文本总数" Width="80" Binding="{Binding Path=user.Tcount}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="是否在线" Width="80" Binding="{Binding Path=user.Isonline}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
