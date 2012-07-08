@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <id>user04</id>
+  <password>123</password>
+  <ip>192.168.0.110</ip>
+  <port>9050</port>
+  <power>3</power>
+</configuration>

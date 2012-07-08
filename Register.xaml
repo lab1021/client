@@ -1,0 +1,22 @@
+﻿<Window x:Class="client.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="用户注册" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="478" Width="528">
+    <Grid Height="414" Width="473">
+        <Label Content="用户名" Height="35" HorizontalAlignment="Left" Margin="70,35,0,0" Name="label_user" VerticalAlignment="Top" Width="60" FontSize="16" FlowDirection="RightToLeft" />
+        <TextBox Height="30" HorizontalAlignment="Left" Margin="160,35,0,0" Name="textBox_user" VerticalAlignment="Top" Width="190" />
+        <Label Content="密码" Height="35" HorizontalAlignment="Left" Margin="70,81,0,0" Name="label_password" VerticalAlignment="Top" Width="60" FontSize="16" FlowDirection="RightToLeft" />
+        <PasswordBox Height="30" HorizontalAlignment="Left" Margin="160,81,0,0" Name="passwordBox_password" VerticalAlignment="Top" Width="190" />
+        <Label Content="确认密码" Height="28" HorizontalAlignment="Left" Margin="52,123,0,0" Name="label_confirm" VerticalAlignment="Top" Width="78" FontSize="16" FlowDirection="RightToLeft" />
+        <PasswordBox Height="30" HorizontalAlignment="Left" Margin="160,128,0,0" Name="passwordBox_confirm" VerticalAlignment="Top" Width="190" />
+        <Label Content="IP" Height="35" HorizontalAlignment="Left" Margin="70,174,0,0" Name="label_ip" VerticalAlignment="Top" Width="60" FontSize="16" FlowDirection="RightToLeft" />
+        <TextBox Height="30" HorizontalAlignment="Left" Margin="160,179,0,0" Name="textBox_ip" VerticalAlignment="Top" Width="190" />
+        <Label Content="端口" Height="35" HorizontalAlignment="Left" Margin="70,229,0,0" Name="label_port" VerticalAlignment="Top" Width="60" FontSize="16" FlowDirection="RightToLeft" />
+        <TextBox Height="30" HorizontalAlignment="Left" Margin="160,229,0,0" Name="textBox_port" VerticalAlignment="Top" Width="190" />
+        <StackPanel Margin="160,281,123,78" Orientation="Horizontal" Visibility="Visible">
+            <RadioButton Content="管理员" Height="34" Name="radioButton_admin" Width="80" FontSize="15" GroupName="power"></RadioButton>
+            <RadioButton Content="翻译人员" Height="34" Name="radioButton_translator" Width="80" FontSize="15" IsChecked="True" GroupName="power" />
+        </StackPanel>
+        <Button Content="注册" Height="23" HorizontalAlignment="Left" Margin="199,351,0,0" Name="button_register" VerticalAlignment="Top" Width="81" Click="button_register_Click" />
+    </Grid>
+</Window>

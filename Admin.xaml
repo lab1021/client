@@ -1,0 +1,71 @@
+﻿<Window x:Class="client.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:assembly="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:client"
+        Title="语料采集系统客户端" Height="596" Width="653">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="keyState" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="local:State"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid Name="Grid_Data">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center">
+                <TextBlock Text="当前总条数"></TextBlock>                
+                <TextBlock Text="{Binding Path=Count}"></TextBlock>
+                <TextBlock Text="条"></TextBlock>
+            </TextBlock>
+                <TextBlock  VerticalAlignment="Center" Margin="10,0,0,0" >
+                    <TextBlock Text="当前选中条数"></TextBlock>                
+                <TextBlock x:Name="Tb_SelectCount" Text="{Binding Path=Ischeckedcount}"></TextBlock>
+                <TextBlock Text="条"></TextBlock>
+                </TextBlock>
+                <Button Name="btn_check" Click="btn_show_Click" Content="查看"  VerticalAlignment="Center" Margin="10,0,0,0"></Button>
+                <Button Name="btn_edit" Click="btn_edit_Click" Content="提交修改"  VerticalAlignment="Center" Margin="10,0,0,0"></Button>
+                <Button Name="btn_delete" Click="btn_delete_Click" Content="删除选中"  VerticalAlignment="Center" Margin="10,0,0,0"></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid Name="UserInfo" ItemsSource="{Binding }"  Margin="0" Background="White" BeginningEdit="UserInfo_BeginningEdit"  SelectionUnit="Cell" CanUserSortColumns="False" CanUserAddRows="False" AutoGenerateColumns="False"  HorizontalGridLinesBrush="#FFD1CFCF" VerticalGridLinesBrush="#FFD1CFCF">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#DBEDF8"/>
+                                <Setter Property="BorderBrush" Value="#DBEDF8"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <CheckBox Content="全 选" x:Name="cBox_All" Click="cBox_All_Click">
+                            </CheckBox>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=user.Ischecked}" Tag="{Binding user.Id}" Click="CheckBox_Click"></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Id" Width="100" Binding="{Binding Path=user.Id}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="密码" Width="100" Binding="{Binding Path=user.Password}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="权限" Width="80" Binding="{Binding Path=user.Power}" IsReadOnly="True"/>
+                    <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding Path=user.State}" ItemsSource="{Binding Source={StaticResource keyState}}"/>
+                    <DataGridTextColumn Header="最后登录" Width="140" Binding="{Binding Path=user.Lastlogin}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="翻译文本总数" Width="80" Binding="{Binding Path=user.Tcount}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
