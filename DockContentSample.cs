@@ -6,16 +6,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net.Sockets;
 
 namespace client
 {
     public partial class DockContentSample : WeifenLuo .WinFormsUI .Docking .DockContent 
     {
-        public DockContentSample()
+        public DockContentSample(object oclient, string otranslator)
         {
             InitializeComponent();
+            client = (Socket)oclient;
+            translator = otranslator;
         }
 
+        private Socket client;
+        private string translator;
         private string titleSrcRtb;
         private string idSrcRtb;
         private List <string > contentListSrc;
@@ -449,7 +454,7 @@ namespace client
         private void DockContentSample_FormClosing(object sender, FormClosingEventArgs e)
         {
        
-            DockSampleClosing dsc = new DockSampleClosing(idSrcRtb ,rtbSrc .Text ,rtbDst .Text );
+            DockSampleClosing dsc = new DockSampleClosing((object) client, translator, idSrcRtb,rtbSrc.Text, rtbDst.Text);
 
             if (dsc.ShowDialog() == DialogResult.Cancel)
                 e.Cancel = true;

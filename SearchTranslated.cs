@@ -15,7 +15,7 @@ namespace client
         public SearchTranslated(string num)
         {
             InitializeComponent();
-            lbName.Text = MainWindow.Translator;
+            //lbName.Text = translator;
             lbArticleNum.Text = num;
         }
 

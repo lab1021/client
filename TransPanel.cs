@@ -36,7 +36,7 @@ namespace client
         }
         private DockContentSample CreateDockContent(string text)
         {
-            DockContentSample dc = new DockContentSample();
+            DockContentSample dc = new DockContentSample((object)client, translator);
             dc.Text = text;
             return dc;
         }
@@ -259,12 +259,12 @@ namespace client
         {
             string toPost = string.Empty;
             toPost = "&#INFO&#";
-            toPost += MainWindow.Translator;
+            toPost += translator;
             toPost += "&#";
-            MainWindow.Client.Send(Encoding .UTF8 .GetBytes (toPost ),System.Net.Sockets.SocketFlags.None );
+            client.Send(Encoding .UTF8 .GetBytes (toPost ),System.Net.Sockets.SocketFlags.None );
             byte[] info = new byte[1024];
             int num;
-            num = MainWindow.Client.Receive(info);
+            num = client.Receive(info);
             string articlenum = Encoding.UTF8.GetString(info);
             SearchTranslated ST = new SearchTranslated(articlenum);
             ST.ShowDialog();

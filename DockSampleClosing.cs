@@ -6,21 +6,26 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net.Sockets;
 using System.IO;
 
 namespace client
 {
     public partial class DockSampleClosing : Form
     {
-        public DockSampleClosing(string id, string srcText,string dstText)
+        public DockSampleClosing(object oclient,string otranslator, string id, string srcText,string dstText)
         {
             InitializeComponent();
             articleID = id;
             srcRtbText = srcText;
             dstRtbText = dstText;
             label4.Text = id;
+            client = (Socket)oclient;
+            translator = otranslator;
         }
 
+        private Socket client;
+        private string translator;
         private string articleID;
         private string srcRtbText;
         private string dstRtbText;
@@ -50,8 +55,8 @@ namespace client
 
         private void btGiveup_Click(object sender, EventArgs e)
         {
-            string toPost = "&#ABAN&#" + articleID + "&#" + MainWindow.Translator + "&#";
-            MainWindow.Client.Send(Encoding.UTF8.GetBytes(toPost), System.Net.Sockets.SocketFlags.None);
+            string toPost = "&#ABAN&#" + articleID + "&#" + translator + "&#";
+            client.Send(Encoding.UTF8.GetBytes(toPost), System.Net.Sockets.SocketFlags.None);
             this.Close();
         }
 
