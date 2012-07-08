@@ -25,7 +25,6 @@ namespace client
         private string sentenceSrc;
         private string sentenceDst;
 
-
         //public List<string> GetContentListSrc()
         //{
         //    string[] srcLines = rtbSrc.Lines;
@@ -102,7 +101,7 @@ namespace client
             get { return rtbDst; }
             set { rtbDst = value; }
         }
-        
+
         private void rtbSrc_Click(object sender, EventArgs e)
         {
             /****
@@ -458,6 +457,5 @@ namespace client
             //    this.Close();
             //MessageBox.Show("请选择保存到本地以待下次翻译还是放弃翻译本篇",);
         }
-        
     }
 }

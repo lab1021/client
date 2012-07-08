@@ -10,16 +10,20 @@ using System.IO;
 using System.Collections;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Xml;
+using System.Net.Sockets;
 
 namespace client
 {
     public partial class TransPanel : Form
     {
-        public TransPanel()
+        public TransPanel(object oclient, string otranslator)
         {
             InitializeComponent();
+            client = (Socket)oclient;
+            translator = otranslator;
         }
-
+        private Socket client;
+        private string translator;
         private ArrayList dcList = new ArrayList();
 
         protected override void OnLoad(EventArgs e)
@@ -37,10 +41,6 @@ namespace client
             return dc;
         }
 
-        //private bool FindDockContent(string text)
-        //{
-        //    foreach (Form form in 
-        //}
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -73,20 +73,12 @@ namespace client
                     contentListSrc=StringtoList(contentSrc);
                     contentListDst=StringtoList(contentDst);
                     dc.SetDockContent(idSrc, titleSrc, contentListSrc, idDst, titleDst, contentListDst);
-                    //dc.RtbSrc.AppendText(sr.ReadLine()+"\n");
-                    //dc.RtbSrc.AppendText(sr.ReadLine()+"\n");
-                    //dc.RtbSrc.AppendText(sr.ReadLine()+"\n");
-                    //sr.ReadLine();
-                    //dc.RtbDst.AppendText(sr.ReadLine()+"\n");
-                    //dc.RtbDst.AppendText(sr.ReadLine()+"\n");
-                    //dc.RtbDst.AppendText(sr.ReadLine()+"\n");
                     dc.Show(this.dockPanel1);
                     sr.Close();
                 }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message.ToString());
                 MessageBox.Show("所选文件格式不符！");
             }
             finally
@@ -130,7 +122,7 @@ namespace client
             saveDialog.DefaultExt = "txt";
             saveDialog.AddExtension = true;
             string name;
-            DockContentSample  dcActive=(DockContentSample )dockPanel1 .ActiveContent ;
+            DockContentSample  dcActive=(DockContentSample)dockPanel1 .ActiveContent ;
             if (dcActive != null)
             {
                 name = dcActive.Text;
@@ -156,13 +148,12 @@ namespace client
 
         private void ApplyforToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            
             string str = "&#GET";
             str = str + "1";
-            MainWindow.Client.Send(Encoding.UTF8.GetBytes(str));
+            client.Send(Encoding.UTF8.GetBytes(str));
             byte[] data = new byte[1024 * 1024];
             int datalen;
-            datalen = MainWindow.Client.Receive(data);
+            datalen = client.Receive(data);
             string s = Encoding.UTF8.GetString(data, 0, datalen);
             string[] article = s.Split(new string[] { "&#" }, StringSplitOptions.RemoveEmptyEntries);
             int articleLen = article.Length;
@@ -175,25 +166,6 @@ namespace client
                 else
                 {
                     DockContentSample dc = CreateDockContent(content[1]);
-                    //dc.RtbSrc.AppendText("文章ID：" + content[0] + "\n");
-                    //dc.RtbSrc.AppendText(content[1] + "\n");
-                    //dc.RtbDst.AppendText("文章ID：" + content[0] + "\n");
-                    //dc.RtbDst.AppendText("\n");
-                    //XmlDocument xmlDoc = new XmlDocument();
-                    //string strbody = "<body>" + content[2] + "</body>";
-                    //xmlDoc.Load(new StringReader(strbody));
-                    //XmlNodeList sbody = xmlDoc.SelectNodes("/body/b");
-                    //for (int i = 0; i < sbody.Count; i++)
-                    //{
-                    //    dc.RtbSrc.AppendText("|  " + sbody[i].InnerText + "  ");
-                    //    dc.RtbDst.AppendText("|  " + new string(' ', sbody[i].InnerText.Length) + "  ");
-                    //}
-
-                    //dc.RtbSrc.AppendText("  | ");
-                    //dc.RtbDst.AppendText("  | ");
-                    //dc.RtbDst.ReadOnly = true;
-                    //dc.RtbSrc.ReadOnly = true;
-                    //dc.Show(this.dockPanel1);
                     XmlDocument xmlDoc = new XmlDocument();
                     string strbody = "<body>" + content[2] + "</body>";
                     xmlDoc.Load(new StringReader(strbody));
@@ -208,7 +180,7 @@ namespace client
             
         }
 
-        private void TransPanelnew_FormClosing(object sender, FormClosingEventArgs e)
+        private void TransPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
             //关闭登录窗口，断开连接
             Environment.Exit(0);
@@ -230,15 +202,12 @@ namespace client
             DockContentSample dcActive = (DockContentSample)dockPanel1.ActiveContent;
             if (dcActive != null)
             {
-                //XmlDocument xmlDoc = new XmlDocument();
-                //XmlElement rootElem = xmlDoc.CreateElement("body");
-                //xmlDoc.AppendChild(rootElem);
                 string toPost = "&#POST1&#";
                 string[] srcLines = dcActive.RtbSrc.Lines;
                 string[] dstLines = dcActive.RtbDst.Lines;
                 if (srcLines.Length == 3 && dstLines.Length == 3)
                 {
-                    toPost = toPost + srcLines[0] + "::" + "NULL" + "::" + MainWindow.Translator + "::" + srcLines[1] + "::";
+                    toPost = toPost + srcLines[0] + "::" + "NULL" + "::" + translator + "::" + srcLines[1] + "::";
                     int srci, srcj,dsti,dstj;
                     string srcbody = srcLines[2];
                     string dstbody = dstLines[2];
@@ -265,7 +234,7 @@ namespace client
                 }
 
                 toPost += "&#";
-                MainWindow.Client.Send(Encoding.UTF8.GetBytes(toPost));
+                client.Send(Encoding.UTF8.GetBytes(toPost));
                 MessageBox.Show("提交成功！");
             }
         }

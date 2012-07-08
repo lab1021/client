@@ -63,8 +63,10 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.HelpLToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+
             this.SearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TranslatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.menuStrip1.SuspendLayout();
             this.toolStripTransPanel.SuspendLayout();
             this.SuspendLayout();
@@ -285,7 +287,7 @@
             this.dockPanel1.Skin = dockPanelSkin2;
             this.dockPanel1.TabIndex = 8;
             // 
-            // SearchToolStripMenuItem
+	    // SearchToolStripMenuItem
             // 
             this.SearchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TranslatedToolStripMenuItem});
@@ -301,7 +303,7 @@
             this.TranslatedToolStripMenuItem.Text = "已翻译篇数";
             this.TranslatedToolStripMenuItem.Click += new System.EventHandler(this.TranslatedToolStripMenuItem_Click);
             // 
-            // TransPanelnew
+            // TransPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -313,10 +315,10 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "TransPanelnew";
+            this.Name = "TransPanel";
             this.Text = "TransPanel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransPanelnew_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransPanel_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStripTransPanel.ResumeLayout(false);
@@ -336,7 +338,7 @@
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OperationToolStripMenuItem;
-        private  System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStrip toolStripTransPanel;
         private System.Windows.Forms.ToolStripButton tsbNew;

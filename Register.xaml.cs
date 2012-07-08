@@ -54,6 +54,7 @@ namespace client
                     catch (Exception exc)
                     {
                         MessageBox.Show("ip地址，端口号错误或服务器端拒绝访问", "警告");
+                        client.Dispose();
                         client.Close();
                         return;
                     }
@@ -98,6 +99,7 @@ namespace client
 
                         MainWindow.config.Save(textBox_user.Text, passwordBox_password.Password, textBox_ip.Text, textBox_port.Text, p);
 
+                        client.Dispose();
                         client.Close();
                         this.Close();
 
@@ -105,12 +107,14 @@ namespace client
                     }
                     else
                     {
+                        client.Dispose();
                         client.Close();
                         MessageBox.Show("注册失败！", "错误");
                     }
                 }
                 catch (Exception ex)
                 {
+                    client.Dispose();
                     client.Close();
                     MessageBox.Show(ex.Message);
                 }
