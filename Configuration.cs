@@ -68,7 +68,7 @@ namespace client
             _password = root.GetElementsByTagName("password").Item(0).InnerText;
             _ip = root.GetElementsByTagName("ip").Item(0).InnerText;
             _port = root.GetElementsByTagName("port").Item(0).InnerText;
-            if (Regx.IsNull(root.GetElementsByTagName("power").Item(0).InnerText))
+            if (BaseFunctions.IsNull(root.GetElementsByTagName("power").Item(0).InnerText))
             {
                 _p = new Power();
                 return;

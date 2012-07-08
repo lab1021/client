@@ -5,6 +5,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,6 +27,8 @@ namespace client
         private byte[] data = new byte[1024];
         private int recv;
 
+        private Regex email = new Regex(@"^[\w\.\-%]+@[\da-zA-Z\.\-]+\.[a-zA-Z]{2,4}$");
+
         public Register()
         {
             InitializeComponent();
@@ -33,9 +36,13 @@ namespace client
 
         private void button_register_Click(object sender, RoutedEventArgs e)
         {
-            if (Regx.IsNull(textBox_user.Text) || Regx.IsNull(passwordBox_password.Password) || Regx.IsNull(passwordBox_confirm.Password) || Regx.IsNull(textBox_ip.Text) || Regx.IsNull(textBox_port.Text))
+            if (BaseFunctions.IsNull(textBox_user.Text) || BaseFunctions.IsNull(passwordBox_password.Password) || BaseFunctions.IsNull(passwordBox_confirm.Password) || BaseFunctions.IsNull(textBox_ip.Text) || BaseFunctions.IsNull(textBox_port.Text))
             {
                 MessageBox.Show("用户名,密码,IP,端口不能为空！", "提示");
+            }
+            else if(!email.IsMatch(textBox_user.Text))
+            {
+                MessageBox.Show("邮箱格式不正确！", "提示");
             }
             else if (passwordBox_password.Password != passwordBox_confirm.Password)
             {

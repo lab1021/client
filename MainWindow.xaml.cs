@@ -63,7 +63,7 @@ namespace client
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //IPAddress
-            if (Regx.IsNull(textBox_user.Text) || Regx.IsNull(passwordBox_password.Password) || Regx.IsNull(textBox_ip.Text) || Regx.IsNull(textBox_port.Text))
+            if (BaseFunctions.IsNull(textBox_user.Text) || BaseFunctions.IsNull(passwordBox_password.Password) || BaseFunctions.IsNull(textBox_ip.Text) || BaseFunctions.IsNull(textBox_port.Text))
             {
                 System.Windows.MessageBox.Show("请输入正确的用户名，密码，服务器ip地址和端口号！", "提示");
                 passwordBox_password.Password = "";

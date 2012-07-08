@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <id>admin12</id>
+  <id>zhouwtlord@gmail.com</id>
   <password>123</password>
   <ip>10.108.16.111</ip>
   <port>9050</port>
-  <power>1</power>
+  <power>3</power>
 </configuration>

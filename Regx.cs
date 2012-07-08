@@ -5,7 +5,7 @@ using System.Text;
 
 namespace client
 {
-    class Regx
+    class BaseFunctions
     {
         public static bool IsNull(string str)
         {
