@@ -40,10 +40,10 @@ namespace client
             {
                 MessageBox.Show("用户名,密码,IP,端口不能为空！", "提示");
             }
-            else if(!email.IsMatch(textBox_user.Text))
-            {
-                MessageBox.Show("邮箱格式不正确！", "提示");
-            }
+            //else if(!email.IsMatch(textBox_user.Text))
+            //{
+            //    MessageBox.Show("邮箱格式不正确！", "提示");
+            //}
             else if (passwordBox_password.Password != passwordBox_confirm.Password)
             {
                 MessageBox.Show("密码不一致！", "提示");
@@ -111,6 +111,12 @@ namespace client
                         this.Close();
 
                         MW.Show();
+                    }
+                    else if ((Encoding.UTF8.GetString(data, 0, recv))[0] == '0')
+                    {
+                        client.Dispose();
+                        client.Close();
+                        MessageBox.Show("注册失败！该邮箱已经注册！", "错误");
                     }
                     else
                     {

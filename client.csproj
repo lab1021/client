@@ -91,7 +91,7 @@
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Regx.cs" />
+    <Compile Include="BaseFunctions.cs" />
     <Compile Include="SearchTranslated.cs">
       <SubType>Form</SubType>
     </Compile>
