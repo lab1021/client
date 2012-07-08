@@ -282,7 +282,7 @@
             this.dockPanel1.Skin = dockPanelSkin2;
             this.dockPanel1.TabIndex = 8;
             // 
-            // TransPanelnew
+            // TransPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -294,7 +294,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "TransPanelnew";
+            this.Name = "TransPanel";
             this.Text = "TransPanel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransPanel_FormClosing);

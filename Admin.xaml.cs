@@ -217,6 +217,11 @@ namespace client
         {
             Edit_list.Add((LUserdata.Find(p=>{if(p.user.Id == ((UserData)e.Row.Item).user.Id) { return true; } return false;})).user.Id);
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 
 

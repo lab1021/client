@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:assembly="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:client"
-        Title="语料采集系统客户端" Height="596" Width="653">
+        Title="语料采集系统客户端" Height="596" Width="653" Closing="Window_Closing">
     <Window.Resources>
         <ObjectDataProvider x:Key="keyState" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
             <ObjectDataProvider.MethodParameters>
